@@ -1,17 +1,14 @@
-function rotateRight(head, k) {
-  if (!head || k === 0) return head;
-  let length = 1;
-  let tail = head;
-  while (tail.next) {
-    length++;
-    tail = tail.next;
+function connect(root) {
+  if (!root) return root;
+  let levelStart = root;
+  while (levelStart) {
+    let curr = levelStart;
+    while (curr) {
+      if (curr.left) curr.left.next = curr.right;
+      if (curr.right && curr.next) curr.right.next = curr.next.left;
+      curr = curr.next;
+    }
+    levelStart = levelStart.left;
   }
-  k = k % length;
-  if (k === 0) return head;
-  let newTail = head;
-  for (let i = 1; i < length - k; i++) newTail = newTail.next;
-  const newHead = newTail.next;
-  newTail.next = null;
-  tail.next = head;
-  return newHead;
+  return root;
 }
