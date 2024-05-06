@@ -1,14 +1,16 @@
-function connect(root) {
-  if (!root) return root;
-  let levelStart = root;
-  while (levelStart) {
-    let curr = levelStart;
-    while (curr) {
-      if (curr.left) curr.left.next = curr.right;
-      if (curr.right && curr.next) curr.right.next = curr.next.left;
-      curr = curr.next;
-    }
-    levelStart = levelStart.left;
+function longestPalindrome(s) {
+  const map = new Map();
+  let hasOdd = false;
+  let result = 0;
+  for (const char of s) {
+    map.set(char, (map.get(char) || 0) + 1);
   }
-  return root;
+  for (const count of map.values()) {
+    if (count % 2 === 0) result += count;
+    else {
+      result += count - 1;
+      hasOdd = true;
+    }
+  }
+  return hasOdd ? result + 1 : result;
 }
