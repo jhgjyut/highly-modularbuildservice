@@ -1,16 +1,10 @@
-function longestConsecutive(nums) {
-  const set = new Set(nums);
-  let longest = 0;
-  for (const num of set) {
-    if (!set.has(num - 1)) {
-      let currentNum = num;
-      let currentStreak = 1;
-      while (set.has(currentNum + 1)) {
-        currentNum++;
-        currentStreak++;
-      }
-      longest = Math.max(longest, currentStreak);
-    }
+function rob(nums) {
+  let prevMax = 0;
+  let currMax = 0;
+  for (const num of nums) {
+    const temp = currMax;
+    currMax = Math.max(prevMax + num, currMax);
+    prevMax = temp;
   }
-  return longest;
+  return currMax;
 }
