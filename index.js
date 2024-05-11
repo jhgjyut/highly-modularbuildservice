@@ -1,2 +1,4 @@
-const deepFlatten = (arr) =>
-  [].concat(...arr.map((v) => (Array.isArray(v) ? deepFlatten(v) : v)));
+const factorial = (num) => {
+  if (num === 0) return 1;
+  return num * factorial(num - 1);
+};
