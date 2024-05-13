@@ -1,6 +1,2 @@
-function add(x, y) {
-  return x + y;
-}
-
-const result = add(5, 3);
-console.log(result); // 8
+const randomNumber = Math.floor(Math.random() * 100) + 1;
+console.log(randomNumber);
